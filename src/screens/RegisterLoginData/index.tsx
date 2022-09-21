@@ -58,13 +58,13 @@ export function RegisterLoginData() {
     const dataKey = '@savepass:logins';
 
     const response = await AsyncStorage.getItem(dataKey);
-    const parsedData = JSON.parse(response ?? '[]');
+    const parsedData = JSON.parse(response) || [];
 
     const newLoginListData = [...parsedData, newLoginData];
 
-    console.log(parsedData);
+    console.log(newLoginListData);
 
-    await AsyncStorage.setItem(dataKey, JSON.stringify(newLoginData));
+    await AsyncStorage.setItem(dataKey, JSON.stringify(newLoginListData));
 
     navigate('Home');
   }
